@@ -2,15 +2,16 @@ const express = require("express");
 const cors = require("cors");
 const  db  = require("./app/models");
 const app = express();
+// It is an info ab CORS below 
+// https://stackabuse.com/handling-cors-with-node-js/
 var corsOptions = {
     origin: 'http://localhost:8081'
 };
 
+// It parses incoming JSON requests and puts the parsed data in req.body.
 app.use(express.json());
 
 app.use(cors(corsOptions));
-
-
 
 app.use(express.urlencoded({extend: true}));
 

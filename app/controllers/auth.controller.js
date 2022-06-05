@@ -58,7 +58,7 @@ exports.signin = (req, res) => {
     username: req.body.username
   })
     .populate("roles", "-__v")
-    .exec((err, user) => {
+    .exec((err, user) => { 
       if (err) {
         res.status(500).send({ message: err });
         return;
@@ -81,7 +81,8 @@ exports.signin = (req, res) => {
       });
       var authorities = [];
       for (let i = 0; i < user.roles.length; i++) {
-        authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+        authorities.push("ROLE_" + user.roles[i].name.toString().toUpperCase());
+        console.log(authorities);
       }
       res.status(200).send({
         id: user._id,
